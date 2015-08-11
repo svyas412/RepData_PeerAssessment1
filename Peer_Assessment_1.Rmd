@@ -1,11 +1,11 @@
 ---
-title: "PeerAssessment1"
-author: "Salil"
+#title: "PeerAssessment1"
+#author: "Salil Vyas"
 date: "Tuesday, August 11, 2015"
 output: html_document
 ---
 
-Loading and preprocessing the data
+###Loading and preprocessing the data
 
 
 ```{r}
@@ -24,6 +24,29 @@ df<-data.frame(activity)
 #Check the Activity data
 head(activity)
 names(activity)
+```
+
+
+###What is mean total number of steps taken per day?
+
+```{r}
+# 1.   Calculate the total number of steps taken per day
+per_day<-group_by(activity, date )
+per_day<-(summarize(per_day, sum(steps))) #total number of steps per day
+df_per_day <- data.frame(per_day)
+names(df_per_day)
+```
+
+```{r}
+# 2.   Histogram of the total number of steps taken each day
+hist(df_per_day$sum.steps., main = "Total steps by day", xlab = "day", col = "blue")
+```
+
+
+```{r}
+# 3.   Mean and median of the total number of steps taken per day
+mean(df_per_day$sum.steps., na.rm=TRUE)
+median(df_per_day$sum.steps., na.rm=TRUE)
 ```
 
 You can also embed plots, for example:
