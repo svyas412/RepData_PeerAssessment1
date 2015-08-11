@@ -5,12 +5,25 @@ date: "Tuesday, August 11, 2015"
 output: html_document
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Loading and preprocessing the data
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r}
-summary(cars)
+#set Working Directory
+setwd ("C:/testR/labs-r/repres/data")
+#Load Lilbraries as needed
+library(dplyr)
+library(datasets)
+
+#Read activity.csv 
+if(!exists("activity")){
+  activity <- read.csv("activity.csv", colClasses = c("numeric", "character", 
+                                                      "numeric"))
+}
+df<-data.frame(activity)
+#Check the Activity data
+head(activity)
+names(activity)
 ```
 
 You can also embed plots, for example:
