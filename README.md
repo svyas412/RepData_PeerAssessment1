@@ -22,8 +22,8 @@ and include the number of steps taken in 5 minute intervals each day.
 
 ## Data
 
-The data for this assignment can be downloaded from the course web
-site:
+The data for this assignment can be from my Github web
+site: https://github.com/svyas412/RepData_PeerAssessment1/blob/master/activity.csv
 
 * Dataset: [Activity monitoring data](https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip) [52K]
 
