@@ -254,6 +254,4 @@ xyplot(steps ~ interval | daytype, stepsByDay, type = "l", layout = c(1, 2),
     xlab = "Interval", ylab = "Number of steps")
 ```
 
-```
-## Error in eval(expr, envir, enclos): could not find function "xyplot"
-```
+![plot of chunk Panel Plot containing time series plot](figure/Panel Plot containing time series plot-1.png) 
