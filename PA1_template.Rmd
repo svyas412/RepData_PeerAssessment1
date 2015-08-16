@@ -26,7 +26,8 @@ The variables included in this dataset are:
 
 The dataset is stored in a comma-separated-value (CSV) file and there are a total of 17,568 observations in this dataset.
 
-####Load Lilbraries as needed
+
+###Load Lilbraries as needed
 
 ```{r Libraries}
 #Load Lilbraries as needed
@@ -45,10 +46,13 @@ setwd ("C:/testR/labs-r/repres/PA1")
 #Check and Read raw data file names activity.csv if not read already to save time and processing.
 
 if(!exists("activity")){
-  activity <- read.csv("activity.csv", colClasses = c("numeric", "character",                                                 "numeric"))
+  activity <- read.csv("activity.csv", colClasses = c("numeric", "character", "numeric"))
 }
-#df<-data.frame(activity)
-#Check the Activity data
+```
+
+
+###Check the Activity data
+```{r, eval=FALSE}
 head(activity)
 names(activity)
 ```
@@ -63,7 +67,7 @@ df_per_day <- data.frame(per_day)
 names(df_per_day)
 ```
 
-```{r Histogram of the total number of steps taken each day}
+```{r Histogram of the total number of steps taken each day, fig.width=7}
 # 2.   Histogram of the total number of steps taken each day
 hist(df_per_day$sum.steps., main = "Total steps by day", xlab = "day", col = "blue")
 ```
