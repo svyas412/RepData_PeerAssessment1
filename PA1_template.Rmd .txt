@@ -28,7 +28,8 @@ The dataset is stored in a comma-separated-value (CSV) file and there are a tota
 
 ####Load Lilbraries as needed
 
-```{r}
+
+```r
 #Load Lilbraries as needed
 library(dplyr)
 library(knitr)
@@ -41,7 +42,8 @@ library(knitr)
 ###Loading and preprocessing the data
 
 
-```{r}
+
+```r
 #set Working Directory
 setwd ("C:/testR/labs-r/repres/data")
 
@@ -54,13 +56,31 @@ if(!exists("activity")){
 df<-data.frame(activity)
 #Check the Activity data
 head(activity)
+```
+
+```
+##   steps       date interval daytype
+## 1    NA 2012-10-01        0 Weekday
+## 2    NA 2012-10-01        5 Weekday
+## 3    NA 2012-10-01       10 Weekday
+## 4    NA 2012-10-01       15 Weekday
+## 5    NA 2012-10-01       20 Weekday
+## 6    NA 2012-10-01       25 Weekday
+```
+
+```r
 names(activity)
+```
+
+```
+## [1] "steps"    "date"     "interval" "daytype"
 ```
 
 
 ###What is mean total number of steps taken per day?
 
-```{r}
+
+```r
 # 1.   Calculate the total number of steps taken per day
 per_day<-group_by(activity, date )
 per_day<-(summarize(per_day, sum(steps))) #total number of steps per day
@@ -68,13 +88,21 @@ df_per_day <- data.frame(per_day)
 names(df_per_day)
 ```
 
-```{r Histogram of the total number of steps taken each day}
+```
+## [1] "date"       "sum.steps."
+```
+
+
+```r
 # 2.   Histogram of the total number of steps taken each day
 hist(df_per_day$sum.steps., main = "Total steps by day", xlab = "day", col = "blue")
 ```
 
+![plot of chunk Histogram of the total number of steps taken each day](figure/Histogram of the total number of steps taken each day-1.png) 
 
-```{r}
+
+
+```r
 # 3.   Mean and median of the total number of steps taken per day
 Mean <- mean(df_per_day$sum.steps., na.rm=TRUE)
 Median <- median(df_per_day$sum.steps., na.rm=TRUE)
@@ -85,7 +113,8 @@ Mean and median of the total number of steps taken per day are 'r nrow(Mean)' an
 
 ###What is the average daily activity pattern?
 
-```{r}
+
+```r
 #1 time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken
 
 per_int<-tapply(activity$steps, activity$interval, mean, na.rm=TRUE)
@@ -95,28 +124,47 @@ plot(row.names(per_int), per_int, type = "l", xlab = "5-min interval",
      col = "red")
 ```
 
-```{r}
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+
+
+```r
 #1 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
 summary(per_int)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.000   2.486  34.110  37.380  52.830 206.200
+```
+
+```r
 max_steps<-which.max(per_int)
 names(max_steps)
+```
 
+```
+## [1] "835"
 ```
 
 ###Imputing missing values
 
-```{r}
+
+```r
 activity_NA <- sum(is.na(activity))
 activity_NA
 ```
 
+```
+## [1] 2304
+```
+
 
 
 ###Imputing missing values
 
-```{r}
 
+```r
 #Devise Strategy
 Avg_Steps <- aggregate(steps~interval, data = activity, FUN=mean) #Calculate Average Steps by interval
 Rep_NA<-numeric() #Replace NA values with Numeric value - Initiate
@@ -132,8 +180,8 @@ for (i in 1:nrow (activity)) {
 ```
 
 
-```{r}
 
+```r
 #Create a new dataset that is equal to the original dataset but with missing data filled in
 
 new_ds <-activity
@@ -142,10 +190,25 @@ new_ds$steps <-Rep_NA
 #histogram
 Steps_Total <- aggregate(steps~date, data=new_ds, FUN=sum)
 hist(Steps_Total$steps, col="blue", xlab="day", main="Total Number of Steps Taken Each Day")
+```
 
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+
+```r
 #mean
 mean(Steps_Total$steps)
+```
+
+```
+## [1] 10766.19
+```
+
+```r
 median(Steps_Total$steps)
+```
+
+```
+## [1] 10766.19
 ```
 
 
@@ -155,7 +218,8 @@ median(Steps_Total$steps)
 
 1.  Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 
-```{r}
+
+```r
 activity$date <- as.Date(activity$date, "%Y-%m-%d")
 days<-weekdays(activity$date)
 daytype <- vector()
@@ -175,6 +239,5 @@ for (i in 1:nrow(activity)) {
 
 activity$daytype <- daytype
 activity$daytype <- factor(activity$daytype)
-
 ```
 
