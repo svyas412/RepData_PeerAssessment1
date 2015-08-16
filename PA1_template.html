@@ -391,6 +391,22 @@ for (i in 1:nrow(activity)) {
 
 activity$daytype &lt;- daytype
 activity$daytype &lt;- factor(activity$daytype)
+
+
+
+stepsByDay &lt;- aggregate(steps ~ interval + daytype, data = activity, mean)
+names(stepsByDay) &lt;- c(&quot;interval&quot;, &quot;daytype&quot;, &quot;steps&quot;)
+</code></pre>
+
+<ol>
+<li>Make a panel plot containing a time series plot (i.e. type = &ldquo;l&rdquo;) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.</li>
+</ol>
+
+<pre><code class="r">xyplot(steps ~ interval | daytype, stepsByDay, type = &quot;l&quot;, layout = c(1, 2), 
+    xlab = &quot;Interval&quot;, ylab = &quot;Number of steps&quot;)
+</code></pre>
+
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;xyplot&quot;
 </code></pre>
 
 </body>

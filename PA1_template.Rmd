@@ -176,5 +176,16 @@ for (i in 1:nrow(activity)) {
 activity$daytype <- daytype
 activity$daytype <- factor(activity$daytype)
 
+
+
+stepsByDay <- aggregate(steps ~ interval + daytype, data = activity, mean)
+names(stepsByDay) <- c("interval", "daytype", "steps")
 ```
+
+2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
+
+```{r Panel Plot containing time series plot}
+
+xyplot(steps ~ interval | daytype, stepsByDay, type = "l", layout = c(1, 2), 
+    xlab = "Interval", ylab = "Number of steps")
 
