@@ -98,7 +98,20 @@ hist(df_per_day$sum.steps., main = "Total steps by day", xlab = "day", col = "bl
 ```r
 # 3.   Mean and median of the total number of steps taken per day
 Mean <- mean(df_per_day$sum.steps., na.rm=TRUE)
+Mean
+```
+
+```
+## [1] 10766.19
+```
+
+```r
 Median <- median(df_per_day$sum.steps., na.rm=TRUE)
+Median
+```
+
+```
+## [1] 10765
 ```
 
 ###What is the average daily activity pattern?
@@ -129,6 +142,8 @@ summary(per_int)
 
 ```r
 max_steps<-which.max(per_int)
+
+#the 5-minute interval that, on average, contains the maximum number of steps is
 names(max_steps)
 ```
 
@@ -185,7 +200,7 @@ new_ds$steps <-Rep_NA
 
 Steps_Total <- aggregate(steps~date, data=new_ds, FUN=sum)
 
-hist(Steps_Total$steps, col="blue", xlab="day", main="Total Number of Steps Taken Each Day")
+hist(Steps_Total$steps, col="blue", xlab="day", main="Total Number of Steps Taken Each Day after imputing missing values")
 ```
 
 ![plot of chunk Histogram of total number of steps](figure/Histogram of total number of steps-1.png) 
