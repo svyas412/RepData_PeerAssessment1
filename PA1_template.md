@@ -26,12 +26,33 @@ The variables included in this dataset are:
 
 The dataset is stored in a comma-separated-value (CSV) file and there are a total of 17,568 observations in this dataset.
 
-####Load Lilbraries as needed
+
+###Load Lilbraries as needed
 
 
 ```r
 #Load Lilbraries as needed
 library(dplyr)
+```
+
+```
+## Warning: package 'dplyr' was built under R version 3.1.3
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+## 
+## The following object is masked from 'package:stats':
+## 
+##     filter
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 library(knitr)
 library (lattice)
 ```
@@ -45,29 +66,16 @@ setwd ("C:/testR/labs-r/repres/PA1")
 #Check and Read raw data file names activity.csv if not read already to save time and processing.
 
 if(!exists("activity")){
-  activity <- read.csv("activity.csv", colClasses = c("numeric", "character",                                                 "numeric"))
+  activity <- read.csv("activity.csv", colClasses = c("numeric", "character", "numeric"))
 }
-#df<-data.frame(activity)
-#Check the Activity data
-head(activity)
 ```
 
-```
-##   steps       date interval daytype
-## 1    NA 2012-10-01        0 Weekday
-## 2    NA 2012-10-01        5 Weekday
-## 3    NA 2012-10-01       10 Weekday
-## 4    NA 2012-10-01       15 Weekday
-## 5    NA 2012-10-01       20 Weekday
-## 6    NA 2012-10-01       25 Weekday
-```
+
+###Check the Activity data
 
 ```r
+head(activity)
 names(activity)
-```
-
-```
-## [1] "steps"    "date"     "interval" "daytype"
 ```
 
 
